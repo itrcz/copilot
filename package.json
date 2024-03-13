@@ -1,4 +1,5 @@
 {
+  "publisher": "CopilotGpt",
   "name": "copilot-gptunnel",
   "displayName": "Copilot GPTunnel",
   "description": "Copilot function powered with GPT-4",
@@ -62,7 +63,8 @@
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "package": "vsce package"
+    "package": "vsce package",
+    "publish": "vsce publish"
   },
   "devDependencies": {
     "@types/vscode": "^1.87.0",
