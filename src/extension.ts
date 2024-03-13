@@ -58,10 +58,10 @@ export function activate(context: vscode.ExtensionContext) {
       status.text = "$(copilot) gptunnel.ru $(sync~spin)";
       status.show();
 
-      let insertText = `use ${(editor.document.languageId || 'codeblock')}\n`;
+      let insertText = '';
+      let prompt = `use ${(editor.document.languageId || 'codeblock')}\n`;
 
       try {
-        let prompt = '';
         if (searchQuery) {
           prompt += `${searchQuery}\n`;
         }
