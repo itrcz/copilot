@@ -3,7 +3,8 @@
   "name": "copilot-gptunnel",
   "displayName": "Copilot GPTunnel",
   "description": "Copilot function powered with GPT-4",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "icon": "./Icon.png",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -57,14 +58,19 @@
 		}
   },
   "scripts": {
-    "vscode:prepublish": "yarn run compile",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
     "package": "vsce package",
-    "publish": "vsce publish"
+    "publish": "vsce publish",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./"
+
   },
   "devDependencies": {
     "@types/vscode": "^1.87.0",
@@ -75,7 +81,8 @@
     "eslint": "^8.56.0",
     "typescript": "^5.3.3",
     "@vscode/test-cli": "^0.0.6",
-    "@vscode/test-electron": "^2.3.9"
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "0.20.1"
   },
   "dependencies": {
     "axios":"1.6.7"
