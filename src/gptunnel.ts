@@ -1,13 +1,9 @@
 import axios from "axios";
 import { config } from "./config";
 
-type Options = {
-  system: string
-  prompt: string
-};
-
-export const requestGPTunnel = async (opt: Options) => {
-  const { endpoint, apiKey, model = "gpt-3.5-turbo" } = config();
+export const requestGPTunnel = async (prompt: string) => {
+  const defaultSystemPrompt = "You writing code blocks, do not explain unless I ask you, just write code in the code block";
+  const { endpoint, apiKey, model = "gpt-3.5-turbo",  systemPrompt } = config();
 
   const result = await axios({
     method: 'POST',
@@ -20,11 +16,11 @@ export const requestGPTunnel = async (opt: Options) => {
       messages: [
         {
           role: "system",
-          content: opt.system,
+          content: systemPrompt || defaultSystemPrompt,
         },
         {
           role: "user",
-          content: opt.prompt
+          content: prompt
         },
       ],
     },

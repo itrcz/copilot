@@ -20,6 +20,8 @@ This extension contributes the following settings:
 
 - `copilotGpt.settings.apiKey`: Ключ API
 - `copilotGpt.settings.model`: Модель GPT
+- `copilotGpt.settings.useWalletBalance`: Использовать личный счет
+- `copilotGpt.settings.systemPrompt`: Задать свою системную инструкцию
 
 ## Последние изменения
 

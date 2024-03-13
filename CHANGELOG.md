@@ -1,9 +1,10 @@
-# Change Log
+# История изменений
 
-All notable changes to the "copilot-gptunnel" extension will be documented in this file.
+## 1.0.2
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Добавлена возможность переключиться на личный лицевой счет
+- Добавлена возможность изменить системную инструкцию через конфигурацию
 
-## [Unreleased]
+## 1.0.1
 
-- Initial release
+- Исправления ошибок

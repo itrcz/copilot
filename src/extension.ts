@@ -3,6 +3,7 @@ import { config } from './config';
 import { inputBoxApiKey } from './inputBoxApiKey';
 import { quickPickModel } from './quickPickModel';
 import { checkApiKeyFormat, requestGPTunnel } from './gptunnel';
+import { quickPickWallet } from './quickPickWallet';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -47,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       const decorationType = vscode.window.createTextEditorDecorationType({
         after: {
-          contentText: '🤖 working...',
+          contentText: '🤖 Думает...',
           margin: '0 0 0 1em'
         }
       });
@@ -57,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
       status.text = "$(copilot) gptunnel.ru $(sync~spin)";
       status.show();
 
-      let insertText = (editor.document.languageId || 'codeblock') + '\n';
+      let insertText = `use ${(editor.document.languageId || 'codeblock')}\n`;
 
       try {
         let prompt = '';
@@ -68,10 +69,9 @@ export function activate(context: vscode.ExtensionContext) {
           prompt += selectedText;
         }
 
-        insertText = await requestGPTunnel({
-          system: "You writing code blocks, do not explain unless I ask you, just write code in the code block",
+        insertText = await requestGPTunnel(
           prompt,
-        });
+        );
       } catch (err: any) {
         vscode.window.showErrorMessage(err.toString());
       } finally {
@@ -99,9 +99,14 @@ export function activate(context: vscode.ExtensionContext) {
     await quickPickModel();
   });
 
+  const setUpWalletDisposable = vscode.commands.registerCommand('copilot-gptunnel.setUpWallet', async function () {
+    await quickPickWallet();
+  });
+
   context.subscriptions.push(promptDisposable);
   context.subscriptions.push(setUpApiKeyDisposable);
   context.subscriptions.push(setUpModalDisposable);
+  context.subscriptions.push(setUpWalletDisposable);
 }
 
 export function deactivate() { }
