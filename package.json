@@ -1,15 +1,17 @@
 {
   "name": "copilot-gptunnel",
-  "displayName": "copilot-gptunnel",
-  "description": "",
-  "version": "0.0.1",
+  "displayName": "Copilot GPTunnel",
+  "description": "Copilot function powered with GPT-4",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.87.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Machine Learning"
   ],
   "activationEvents": ["onStartupFinished"],
+  "repository":"https://github.com/itrcz/copilot",
   "main": "./out/extension.js",
   "contributes": {
     "menus": {
@@ -59,7 +61,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/vscode": "^1.87.0",
