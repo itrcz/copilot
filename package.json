@@ -1,0 +1,78 @@
+{
+  "name": "copilot-gptunnel",
+  "displayName": "copilot-gptunnel",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "menus": {
+      "editor/title": [
+        {
+          "command": "copilot-gptunnel.prompt",
+          "group": "navigation",
+          "alt": "copilot-gptunnel.prompt"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "copilot-gptunnel.prompt",
+        "title": "Copilot -> Prompt",
+        "icon": "$(copilot)"
+      },
+      {
+        "command": "copilot-gptunnel.setUpModel",
+        "title": "Copilot -> Model Select"
+      },
+      {
+        "command": "copilot-gptunnel.setUpApiKey",
+        "title": "Copilot -> SetUp API Key"
+      }
+    ],
+    "configuration": {
+			"title": "CopilotGpt",
+			"type": "object",
+			"properties": {
+				"copilotGpt.settings.apiKey": {
+					"title": "API ключ",
+					"description": "Получить API ключ можно на сайте https://gptunne.ru",
+					"type": "string"
+				},
+        "copilotGpt.settings.model": {
+					"title": "Модель бота ключ",
+					"description": "Доступно gpt-3.5-turbo / gpt-4-turbo",
+					"type": "string"
+				}
+			}
+		}
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.87.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.9"
+  },
+  "dependencies": {
+    "axios":"1.6.7"
+  }
+}
