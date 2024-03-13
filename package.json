@@ -3,7 +3,7 @@
   "name": "copilot-gptunnel",
   "displayName": "Copilot GPTunnel",
   "description": "Copilot function powered with GPT-4",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "icon": "./Icon.png",
   "engines": {
     "vscode": "^1.87.0"
@@ -12,8 +12,10 @@
     "Other",
     "Machine Learning"
   ],
-  "activationEvents": ["onStartupFinished"],
-  "repository":"https://github.com/itrcz/copilot",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "repository": "https://github.com/itrcz/copilot",
   "main": "./out/extension.js",
   "contributes": {
     "menus": {
@@ -33,29 +35,43 @@
       },
       {
         "command": "copilot-gptunnel.setUpModel",
-        "title": "Copilot -> Model Select"
+        "title": "Copilot -> Выбор модели"
       },
       {
         "command": "copilot-gptunnel.setUpApiKey",
-        "title": "Copilot -> SetUp API Key"
+        "title": "Copilot -> Ввести API ключ"
+      },
+      {
+        "command": "copilot-gptunnel.setUpWallet",
+        "title": "Copilot -> Выбрать счет для оплаты"
       }
     ],
     "configuration": {
-			"title": "CopilotGpt",
-			"type": "object",
-			"properties": {
-				"copilotGpt.settings.apiKey": {
-					"title": "API ключ",
-					"description": "Получить API ключ можно на сайте https://gptunne.ru",
-					"type": "string"
-				},
+      "title": "CopilotGpt",
+      "type": "object",
+      "properties": {
+        "copilotGpt.settings.apiKey": {
+          "title": "API ключ",
+          "description": "Получить API ключ можно на сайте https://gptunne.ru",
+          "type": "string"
+        },
         "copilotGpt.settings.model": {
-					"title": "Модель бота ключ",
-					"description": "Доступно gpt-3.5-turbo / gpt-4-turbo",
-					"type": "string"
-				}
-			}
-		}
+          "title": "Модель бота ключ",
+          "description": "Доступно gpt-3.5-turbo / gpt-4-turbo",
+          "type": "string"
+        },
+        "copilotGpt.settings.useWalletBalance": {
+          "title": "Использовать личный счет",
+          "description": "Если true - API будет использовать личный баланс",
+          "type": "boolean"
+        },
+        "copilotGpt.settings.systemPrompt": {
+          "title": "Custom system prompt",
+          "description": "Параметр перезапишет системную инструкцию которая отправляеться по умолчанию",
+          "type": "string"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",
@@ -70,21 +86,20 @@
     "esbuild": "npm run esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./"
-
   },
   "devDependencies": {
-    "@types/vscode": "^1.87.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
+    "@types/vscode": "^1.87.0",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
     "@vscode/test-cli": "^0.0.6",
     "@vscode/test-electron": "^2.3.9",
-    "esbuild": "0.20.1"
+    "esbuild": "0.20.1",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "axios":"1.6.7"
+    "axios": "1.6.7"
   }
 }
