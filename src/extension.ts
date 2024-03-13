@@ -59,18 +59,30 @@ export function activate(context: vscode.ExtensionContext) {
       status.show();
 
       let insertText = '';
-      let prompt = `use ${(editor.document.languageId || 'codeblock')}\n`;
+      let prompt = '';
 
       try {
-        if (searchQuery) {
-          prompt += `${searchQuery}\n`;
-        }
+        
         if (selectedText) {
-          prompt += selectedText;
+          prompt += `Code fragment:\n\`\`\`${editor.document.languageId ||''}\n${selectedText}\`\`\``;
+        }
+
+        if (searchQuery) {
+          if (prompt) {
+            prompt += `\n`;
+          }
+          prompt += `Instruction: ${searchQuery}`;
+          if (!selectedText && editor.document.languageId) {
+            prompt += `, use ${editor.document.languageId}.`;
+          }
         }
 
         insertText = await requestGPTunnel(
-          prompt,
+          {
+            prompt,
+            codeFragment: !!selectedText,
+            instruction: !!searchQuery,
+          }
         );
       } catch (err: any) {
         vscode.window.showErrorMessage(err.toString());
@@ -87,6 +99,7 @@ export function activate(context: vscode.ExtensionContext) {
             editBuilder.insert(selection.start, insertText);
           }
         });
+        vscode.commands.executeCommand('editor.action.formatDocument');
       }
     }
   });

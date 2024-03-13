@@ -3,7 +3,7 @@
   "name": "copilot-gptunnel",
   "displayName": "Copilot GPTunnel",
   "description": "Copilot function powered with GPT-4",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "icon": "./Icon.png",
   "engines": {
     "vscode": "^1.87.0"
@@ -25,25 +25,32 @@
           "group": "navigation",
           "alt": "copilot-gptunnel.prompt"
         }
+      ],
+      "editor/context": [
+        { 
+          "command": "copilot-gptunnel.prompt",
+          "group": "navigation",
+          "alt": "copilot-gptunnel.prompt"
+        }
       ]
     },
     "commands": [
       {
         "command": "copilot-gptunnel.prompt",
-        "title": "Copilot -> Prompt",
+        "title": "Copilot: Prompt",
         "icon": "$(copilot)"
       },
       {
         "command": "copilot-gptunnel.setUpModel",
-        "title": "Copilot -> Выбор модели"
+        "title": "Copilot: Выбор модели"
       },
       {
         "command": "copilot-gptunnel.setUpApiKey",
-        "title": "Copilot -> Ввести API ключ"
+        "title": "Copilot: Ввести API ключ"
       },
       {
         "command": "copilot-gptunnel.setUpWallet",
-        "title": "Copilot -> Выбрать счет для оплаты"
+        "title": "Copilot: Выбрать счет для оплаты"
       }
     ],
     "configuration": {
