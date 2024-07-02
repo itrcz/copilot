@@ -19,7 +19,7 @@ export const requestGPTunnel = async (otp: Options) => {
   }
   defaultSystemPrompt = 'Do not explain unless I ask.';
 
-  const { endpoint, apiKey, model = "gpt-3.5-turbo",  systemPrompt } = config();
+  const { endpoint, apiKey, model = "gpt-3.5-turbo", useWalletBalance, systemPrompt } = config();
 
   const result = await axios({
     method: 'POST',
@@ -29,6 +29,7 @@ export const requestGPTunnel = async (otp: Options) => {
     },
     data: {
       model,
+      useWalletBalance,
       messages: [
         {
           role: "system",
