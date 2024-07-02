@@ -3,7 +3,7 @@
   "name": "copilot-gptunnel",
   "displayName": "Copilot GPTunnel",
   "description": "Copilot function powered with GPT-4",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "icon": "./Icon.png",
   "engines": {
     "vscode": "^1.87.0"
@@ -59,12 +59,12 @@
       "properties": {
         "copilotGpt.settings.apiKey": {
           "title": "API ключ",
-          "description": "Получить API ключ можно на сайте https://gptunne.ru",
+          "description": "Получить API ключ можно на сайте https://gptunnel.ru",
           "type": "string"
         },
         "copilotGpt.settings.model": {
           "title": "Модель бота ключ",
-          "description": "Доступно gpt-3.5-turbo / gpt-4-turbo",
+          "description": "Доступно gpt-3.5-turbo / gpt-4-turbo / gpt-4o / claude-3.5-sonnet",
           "type": "string"
         },
         "copilotGpt.settings.useWalletBalance": {
