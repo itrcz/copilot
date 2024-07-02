@@ -3,7 +3,7 @@
   "name": "copilot-gptunnel",
   "displayName": "Copilot GPTunnel",
   "description": "Copilot function powered with GPT-4",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "icon": "./Icon.png",
   "engines": {
     "vscode": "^1.87.0"
@@ -27,7 +27,7 @@
         }
       ],
       "editor/context": [
-        { 
+        {
           "command": "copilot-gptunnel.prompt",
           "group": "navigation",
           "alt": "copilot-gptunnel.prompt"
